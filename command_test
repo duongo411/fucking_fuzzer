@@ -1,0 +1,15 @@
+Target: test.exe
+=> run ok
+
+C:\DynamoRIO\bin32\drrun.exe -c winafl.dll -debug -coverage_module test.exe -target_module test.exe -target_offset 0x118b -fuzz_iterations 10 -nargs 2 -- C:\fuzz\test.exe C:\fuzz\test.txt
+
+
+C:\winafl\bin32\afl-fuzz.exe -i in -o out -D C:\DynamoRIO\bin32\ -t 20000 -- -coverage_module test.exe -fuzz_iterations 5000 -target_module test.exe -target_offset 0x118b -nargs 2 -- test.exe @@
+
+---------------------------------------------------------------
+Target: test_gdiplus.exe
+=> ok
+
+C:\DynamoRIO\bin32\drrun.exe -c winafl.dll -debug -coverage_module test_gdiplus.exe -target_module test_gdiplus.exe -target_offset 0x1680 -fuzz_iterations 10 -nargs 2 -- C:\fuzz\test_gdiplus.exe C:\fuzz\not_kitty.txt
+
+C:\winafl\bin32\afl-fuzz.exe -i in -o out -D C:\DynamoRIO\bin32\ -t 20000 -- -coverage_module test_gdiplus.exe -fuzz_iterations 5000 -target_module test_gdiplus.exe -target_offset 0x1680 -nargs 2 -- test_gdiplus.exe @@
